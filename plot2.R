@@ -1,0 +1,8 @@
+x<-subset(read.csv("household_power_consumption.txt", header=T, sep=";"), Date == "1/2/2007")
+y<-subset(read.csv("household_power_consumption.txt", header=T, sep=";"),Date == "2/2/2007")
+z<-rbind(x,y)
+x<-paste(z[,1],z[,2])
+y<-strptime(x,"%d/%m/%Y %H:%M:%S") 
+png(filename = "plot2.png")
+plot(y, as.numeric(levels(z[,3])[z[,3]]), type = "l",ylab = "Global Active Power (kilowatts)",xlab="")
+dev.off()
